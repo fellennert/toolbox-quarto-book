@@ -2,13 +2,18 @@ project:
   type: book
 
 book:
-  title: "toolbox-quarto-book"
-  author: "Norah Jones"
-  date: "10/12/2023"
+  title: "Toolbox Computational Social Science"
+  author: "Felix Lennert"
+  date: "2024-01-04"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - catch-up.qmd
+    - stringr_regex.qmd
+    - scraping-I.qmd
+    - scraping-II.qmd
+    - text-preprocessing.qmd
+    - supervised_ml.qmd
+    - unsupervised_ml.qmd
     - references.qmd
 
 bibliography: references.bib
