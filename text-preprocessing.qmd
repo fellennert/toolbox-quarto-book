@@ -133,6 +133,9 @@ Now I have created a nice tibble containing the SOTU addresses of the 20th centu
 
 1.  Download Twitter timeline data (`timelines <- read_csv("https://www.dropbox.com/s/dpu5m3xqz4u4nv7/tweets_house_rep_party.csv?dl=1") |> filter(!is.na(party))`. Let's look at abortion-related tweets and how the language may differ between parties. Filter relevant tweets using a vector of keywords and a regular expression (hint: `filter(str_detect(text, str_c(keywords, collapse = "|")))`). Preprocess the Tweets as follows:
 
+```{=html}
+<!-- -->
+```
 a.  Unnest the tokens.
 b.  Remove stop words.
 c.  Perform stemming.
@@ -481,7 +484,9 @@ This already looks quite nice, it is quite easy to see which plot belongs to the
 
 A better definition of words that are particular to a group of documents is "the ones that appear often in one group but rarely in the other one(s)". So far, the measure of term frequency only accounts for how often terms are used in the respective document. I can take into account how often it appears in other documents by including the inverse document frequency. The resulting measure is called tf-idf and describes "the frequency of a term adjusted for how rarely it is used." [@silge_tidytext_2016: 31] If a term is rarely used overall but appears comparably often in a singular document, it might be safe to assume that it plays a bigger role in that document.
 
-The tf-idf of a word in a document is commonly^[Note that multiple implementations exist, for an overview see, for instance, @manning_introduction_2008]. One implementation is calculated as follows:
+The tf-idf of a word in a document is commonly[^text-preprocessing-3]. One implementation is calculated as follows:
+
+[^text-preprocessing-3]: Note that multiple implementations exist, for an overview see, for instance, @manning_introduction_2008
 
 $$w_{i,j}=tf_{i,j}\times ln(\frac{N}{df_{i}})$$
 
@@ -561,6 +566,9 @@ tfidf_vs_full |>
 
 3.  Count the terms per party.
 
+```{=html}
+<!-- -->
+```
 a.  Do you see party-specific differences with regard to their ten most common terms (hint: `slice_max(n, n = 10, with_ties = FALSE)`)?
 
 ```{r eval=FALSE}
@@ -869,7 +877,6 @@ sent_per_doc |>
   facet_wrap(vars(party))
 ```
 
-
 6.  Have a look at different dictionaries (e.g., Bing or Loughran). Check the words that contributed the most. Do you see any immediate ambiguities or flaws?
 
 ```{r eval=FALSE}
@@ -944,7 +951,6 @@ tweets_abortion_tidy_contribution_bing |>
     scale_y_reordered() +
     facet_wrap(vars(party, sentiment), scales = "free")
 ```
-
 
 ## Further links
 

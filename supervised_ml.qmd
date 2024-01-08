@@ -297,14 +297,16 @@ Again, we can access the resulting metrics using `collect_metrics()`:
 collect_metrics(tune_lasso_rs)
 ```
 
-`autoplot()` can be used to visualize them:
+We can also visualize this:
 
 ```{r}
-autoplot(tune_lasso_rs) +
-  labs(
-    title = "Lasso model performance across 3 regularization penalties"
-  )
+collect_metrics(tune_lasso_rs) |> 
+  ggplot() +
+  geom_line(aes(penalty, mean, color = as_factor(max_tokens))) +
+  facet_wrap(vars(.metric), nrow = 3) +
+  scale_x_log10(breaks = c(0.0001, 0.01, 1)) 
 ```
+
 
 Also, we can use `show_best()` to look at the best result. Subsequently, `select_best()` allows me to choose it. In real life, we would choose the best trade-off between a model as simple and as good as possible. Using `select_by_pct_loss()`, we choose the one that performs still more or less on par with the best option (i.e., within 2 percent accuracy) but is considerably simpler. Finally, once we are satisfied with the outcome, we can `finalize_workflow()` and fit the final model to the test data.
 
@@ -329,7 +331,6 @@ collect_predictions(final_fitted) |>
 ```
 
 ## Supervised ML with `tidymodels` in a nutshell
-
 
 ```{r echo=FALSE}
 vembedr::embed_youtube("YRtZZi0Ss5E")

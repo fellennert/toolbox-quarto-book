@@ -14,6 +14,7 @@ book:
     - text-preprocessing.qmd
     - supervised_ml.qmd
     - unsupervised_ml.qmd
+    - word_embeddings.qmd
     - references.qmd
 
 bibliography: references.bib

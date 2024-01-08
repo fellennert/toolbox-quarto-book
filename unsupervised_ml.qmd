@@ -1,4 +1,4 @@
-# Unsupervised Learning: topic models
+# Unsupervised Classification
 
 ```{r echo=FALSE}
 vembedr::embed_youtube("y9bI9qXi0xk")
@@ -217,7 +217,6 @@ servr::daemon_stop(2)
 ```
 
 ## Structural Topic Models
-
 
 ```{r echo=FALSE}
 vembedr::embed_youtube("WOnAHXgAGlY")

@@ -6,7 +6,7 @@ vembedr::embed_youtube("JBTVdnfO8cE")
 
 This session on word embeddings will conclude the script. Word embeddings are a fairly new technique that massively contributed to the progress the field of NLP has made over the last years. Their idea is basically that words can be embedded in a vector space in such a way that their real-life relationships are retained. This means for instance that words that co-appear in similar contexts are more similar -- or have greater cosine similarity -- than the ones that don't. Also synonyms will be very similar.
 
-In the following script, we will first use pre-trained (fasttext) embeddings to explain general applications for embeddings (prediction -- in combination with the `tidymodels` framework -- and extraction of word relationships). Thereafter we will move on to train our own embeddings to look at a typical application from the sociology of culture: determining how language is different across groups. In our particular case we will look at how certain gender stereotypes may be different in a sample of works of male and female authors downloaded using the `gutenbergr` package (and therefore quite old).
+In the following script, we will first use pre-trained (fasttext) embeddings to look a word relationships. Then, we will move on to train our own embeddings. This enables you to look at a typical application from the sociology of culture: determining how language is different across groups. In our particular case we will look at how certain gender stereotypes may be different in a sample of works of male and female authors downloaded using the `gutenbergr` package (and therefore quite old). I will leave the actual stereotype determination as an exercise for you though.
 
 ## Pretrained embeddings
 
@@ -189,8 +189,8 @@ male_text <- male$text |> str_c(collapse = " ")
 female <- joined_names |> pluck(2) |> pull(gutenberg_id) |> gutenberg_download()
 female_text <- female$text |> str_c(collapse = " ")
 
-male_text |> write_rds("male_text.rds")
-female_text |> write_rds("female_text.rds")
+#male_text |> write_rds("male_text.rds")
+#female_text |> write_rds("female_text.rds")
 ```
 
 Once we have acquired the text, we can train the models. Here, we will use the `GloVe` algorithm and lower dimensions. The `wordsalad` package provides us with an implementation.
@@ -203,12 +203,9 @@ rownames(male_emb_mat) <- male_emb$tokens
 female_emb <- wordsalad::glove(female_text |> str_remove_all("[:punct:]") |> str_to_lower())
 female_emb_mat <- as.matrix(female_emb[, 2:11])
 rownames(female_emb_mat) <- female_emb$tokens
-
-male_emb_mat |> write_rds("male_glove_mat.rds")
-female_emb_mat |> write_rds("female_glove_mat.rds")
 ```
 
-Now we can use these matrices just as the pretrained matrix before and start to investigate different biases systematically. However, these biases are of course quite dependent on the choice of corpus. One way to mitigate this and to check the stability and robustness of the estimate would be a bootstrapping approach. Thereby, multiple models are trained with randomly sampled 95% of text units (e.g., sentences). Then, the bias estimates are calculated for each model and compared (see Antoniak and Mimno 2018).
+Now we can use these matrices just as the pretrained matrix before and start to investigate different biases systematically. However, these biases are of course quite dependent on the choice of corpus. One way to mitigate this and to check the stability and robustness of the estimate would be a bootstrapping approach. Thereby, multiple models are trained with randomly sampled 95% of text units (e.g., sentences). Then, the bias estimates are calculated for each model and compared [@antoniak_evaluating_2018].
 
 ## Further links
 
@@ -228,7 +225,7 @@ You can also train embeddings on multiple corpora and identify their different b
 
 ```
 
-2.  Try to come up with your own axes. Play around and position words on them. Do your results always make sense? Inspiration can for instance be found in the works of Kozlowski, Taddy, and Evans (2018), or Garg et al. 2018. Or in the slides of Julien Boelaert himself.
+2.  Try to come up with your own axes. Play around and position words on them. Do your results always make sense? Inspiration can for instance be found in the works of @kozlowski_geometry_2019, or @garg_word_2018.
 
 ```{r}
 

@@ -1,4 +1,4 @@
-# Scraping the web -- extracting data {#day3}
+# Scraping the Web -- Extracting Data {#day3}
 
 In the prior chapter you were shown how to make calls to web pages and get responses. Moreover, you were introduced to making calls to APIs which (usually) give you content in a nice and structured manner. In this chapter, the guiding topic will be how you can extract content from web pages in a structured way. The (in our opinion) easiest way to achieve that is by harnessing the way the web is written.
 
@@ -383,6 +383,9 @@ If you have to rely on screen scraping, also ask yourself the question how you c
 
 2.  Scrape 5 pages of the latest [UN press releases](https://press.un.org/en/content/secretary-general/press-release) in an automated fashion. Make sure to take breaks between requests by including `Sys.sleep(2)`. For each iteration, store the articles and links in a tibble containing the columns `title`,`link`, and `date` (bonus: store it in date format). (Tip: wrap the code that extracts and stores content in a tibble in a function.)
 
+```{=html}
+<!-- -->
+```
 a.  Do so using running numbers in the urls.
 b.  Do so by using `session()` in a loop. (Note: make sure to specify `css =`)
 
